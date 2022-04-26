@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from './logo.svg';
 import './App.css';
+import {ThemeProvider, createTheme} from '@mui/material/styles';
 
 function App() {
   const [testData, setTestData] = useState(null);
@@ -12,7 +13,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <ThemeProvider>
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {testData ? (
@@ -30,7 +32,8 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

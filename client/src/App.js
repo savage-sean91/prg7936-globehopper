@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import logo from './logo.svg';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import LoginPage from './pages/Login';
+import LoginPage from './pages/login/Login';
+import Home from './pages/home/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const theme = createTheme();
 
@@ -15,9 +18,16 @@ function App() {
       .then((data) => setTestData(data.message));
   }, []);
 
+  // Renders top level components
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const openDrawer = function () {
+    setDrawerOpen(true);
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className="App App-container">
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           {testData ? (
@@ -35,7 +45,13 @@ function App() {
             Learn React
           </a>
         </header> */}
-        <LoginPage />
+        {/* <LoginPage /> */}
+        <Header
+          title="Globe Hopper"
+          openDrawer={openDrawer}
+        />
+        <Home />
+        <Footer />
       </div>
     </ThemeProvider>
   );

@@ -25,6 +25,11 @@ function LoginForm() {
                 label="Password"
             />
         </Box>
+        <Box>
+            <Button type="submit" variant="contained">
+                Login
+            </Button>
+        </Box>
     </Box>
   );
 }

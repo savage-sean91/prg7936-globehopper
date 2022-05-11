@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import LoginPage from './pages/login/Login';
-import Home from './pages/home/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Layout from './components/Layout';
+import CountryDetailModal from "./components/CountryDetailModal";
 
 const theme = createTheme();
 
@@ -28,29 +34,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App App-container">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {testData ? (
-            <pre>{testData}</pre>
-          ) : null}
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
-        {/* <LoginPage /> */}
         <Header
           title="Globe Hopper"
           openDrawer={openDrawer}
         />
-        <Home />
+        <BrowserRouter>
+          {/* App level router */}
+          {/* <Routes>
+            <Route path="/" element={<Layout />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="countries" >
+              <Route index element={<AllCountries />} />
+              <Route path=":countryId" element={<CountryDetailModal />} />
+            </Route>
+          </Routes> */}
+          <Layout />
+        </BrowserRouter>
         <Footer />
       </div>
     </ThemeProvider>

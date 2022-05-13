@@ -26,21 +26,18 @@ class CountryListResult extends React.Component {
     }
 
     render() {
-        if (this.props.countryData.hasOwnProperty('Cities')) {
-            console.log(this.props.countryData.Cities);
-        }
         return (
             <Card className="country-card">
                 <CardHeader
-                    title={this.props.countryData.Name}
+                    title={this.props.countryData.name}
                     titleTypographyProps={{
                         variant: "h4",
                         component: "h1"
                     }}
                 />
                 <CardContent>
-                    <p><b>Continent: </b><span>{this.props.countryData.Continent}</span></p>
-                    <p><b>Cities: </b><span>{this.props.countryData.Cities ? (this.props.countryData.Cities.length > 0 ? this.props.countryData.Cities.length : "No Cities") : 0}</span></p>
+                    <p><b>Continent: </b><span>{this.props.countryData.continent}</span></p>
+                    <p><b>Cities: </b><span>{this.props.countryData.cities ? (this.props.countryData.cities.length > 0 ? this.props.countryData.cities.length : "No Cities") : 0}</span></p>
                 </CardContent>
                 <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
                     <Button variant="contained" color="primary" onClick={this.openModal}>Learn More</Button>

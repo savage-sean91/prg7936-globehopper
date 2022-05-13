@@ -1,18 +1,16 @@
 const express = require('express');
-const userController = require('../../controllers/user.controller');
+const countryController = require('../../controllers/country.controller');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(function (req, res, next) {
-    // Get all the countries from the database
-  });
+  .post(countryController.createCountry)
+  .get(countryController.getAllCountries);
 
 router
   .route('/:countryId')
-  .get(function (req, res, next) {
-    // Get a specific country from the database
-  });
+  .patch(countryController.updateCountry)
+  .delete(countryController.deleteCountry);
 
 module.exports = router;

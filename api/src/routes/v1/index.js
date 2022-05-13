@@ -2,6 +2,7 @@ const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
+const countryRoute = require('./country.route');
 const config = require('../../config/config');
 
 const router = express.Router();
@@ -15,6 +16,10 @@ const defaultRoutes = [
     path: '/users',
     route: userRoute,
   },
+  {
+    path: '/countries',
+    route: countryRoute,
+  }
 ];
 
 const devRoutes = [
@@ -105,10 +110,6 @@ if (config.env === 'development') {
 
   router.use('/sample', (req, res) => {
     res.json([]);
-  });
-
-  router.use('/countries', (req, res) => {
-    res.json(sampleCountries);
   });
 
   router.use('/cities', (req, res) => {

@@ -25,33 +25,33 @@ class CountryDetailModal extends React.Component {
             >
                 <Card className={"modalContainer"}>
                     <CardHeader
-                        title={countryData.Name}
+                        title={countryData.name}
                         titleTypographyProps={{
                             variant: "h3",
                             component: "h1"
                         }}
                     />
                     <CardContent>
-                        <b>Population: </b><span>{countryData.Population}</span>
+                        <b>Population: </b><span>{countryData.population}</span>
                         <br />
-                        <b>Continent: </b><span>{countryData.Continent}</span>
-                        {Array.isArray(countryData.Cities) ? (
+                        <b>Continent: </b><span>{countryData.continent}</span>
+                        {Array.isArray(countryData.cities) ? (
                             <>
                                 <h2>Cities</h2>
                                 <Grid container>
-                                    {countryData.Cities.map((c, idx) => {
+                                    {countryData.cities.map((c, idx) => {
                                         return (
                                             <Grid item xs={12} sm={8} md={6} lg={4} className={"cityContainer"}>
                                                 <Card key={idx} elevation="2">
                                                     <CardContent>
                                                         <h4 className={"cityHeader"}>
-                                                            {c.Capital ? (<StarsIcon />) : null}
-                                                            {c.Name}
+                                                            {c.capital ? (<StarsIcon />) : null}
+                                                            {c.name}
                                                         </h4>
                                                         <b>Landmarks</b>
-                                                        <p>{c.FirstLandmark}</p>
-                                                        <p>{c.SecondLandmark}</p>
-                                                        <p>{c.ThirdLandmark}</p>
+                                                        <p>{c.firstLandmark}</p>
+                                                        <p>{c.secondLandmark}</p>
+                                                        <p>{c.thirdLandmark}</p>
                                                     </CardContent>
                                                 </Card>
                                             </Grid>

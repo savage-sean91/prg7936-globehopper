@@ -6,17 +6,20 @@ import {
     Outlet,
     useMatch,
     useLocation
-  } from "react-router-dom";
+} from "react-router-dom";
+import {
+    useSelector
+} from 'react-redux';
 import Authenticated from '../components/Authenticated';
 import Unauthenticated from '../components/Unauthenticated';
 import LoginPage from '../pages/login/Login';
+import AdminPage from '../pages/admin/Admin';
 import Register from '../pages/register/Register';
 
-function Layout() {
-    const [user, setUser] = useState("test");
-    /*let currentLocation = useLocation();
-    let pathMatches = useMatch(currentLocation.pathname);
-    console.log(pathMatches);*/
+const Layout = (props) => {
+    const user = useSelector((state) => {
+        return state ? state.user : null;
+    });
 
     return (
         <>
@@ -24,6 +27,9 @@ function Layout() {
                 // Signed in
                 <Routes>
                     <Route index element={<Authenticated />} />
+                    {user.role === "admin" ? (
+                        <Route path="admin" element={<AdminPage />} />
+                    ) : null}
                     {/* <Route path="countries" >
                         <Route index element={<AllCountries />} />
                         <Route path=":countryId" element={<CountryDetailModal />} />

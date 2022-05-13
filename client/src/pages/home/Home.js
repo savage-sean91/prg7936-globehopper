@@ -34,7 +34,6 @@ class Home extends React.Component {
         };
         this.fetchCountries = this.fetchCountries.bind(this);
         this.onCountryFetchSuccess = this.onCountryFetchSuccess.bind(this);
-        this.onCityFetchSuccess = this.onCityFetchSuccess.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
         this.isContinentSelected = this.isContinentSelected.bind(this);
         this.onContinentSelected = this.onContinentSelected.bind(this);
@@ -71,7 +70,7 @@ class Home extends React.Component {
     filterCountries() {
         let searchValue = this.state.searchQuery.toLowerCase();
         let filteredCountries = this.state.allCountries.filter(c => {
-            let lowerCaseName = c.Name.toLowerCase();
+            let lowerCaseName = c.name.toLowerCase();
             let nameMatch = false;
             let continentMatch = false;
             if (!searchValue) {
@@ -83,7 +82,7 @@ class Home extends React.Component {
             // Look at selected continents
             if (this.state.selectedContinents.length === 0) {
                 continentMatch = true;
-            } else if (this.isContinentSelected(c.Continent)) {
+            } else if (this.isContinentSelected(c.continent)) {
                 continentMatch = true;
             }
 
@@ -92,8 +91,8 @@ class Home extends React.Component {
         });
 
         filteredCountries.sort((a, b) => {
-            let nameA = a.Name.toLowerCase();
-            let nameB = b.Name.toLowerCase();
+            let nameA = a.name.toLowerCase();
+            let nameB = b.name.toLowerCase();
             if (nameA < nameB) {
                 return -1;
             }
@@ -110,47 +109,9 @@ class Home extends React.Component {
         // Save countries to state
         this.setState({ allCountries: data });
 
-        // Query API for country data
-        //fetch("http://localhost:3000/api/globehopper/marketing/cities")
-        fetch("/v1/cities")
-            .then(res => res.json())    // returns a promise (Response promise)
-            .then(this.onCityFetchSuccess, this.onFetchFail)    // uses the response promise
-            .catch(this.onFetchError);
-    }
-
-    onCityFetchSuccess(data) {
         setTimeout(() => {
             this.setState({ loading: false });
         }, 2000);
-
-        let tempCountries = [...this.state.allCountries];
-        tempCountries.map(c => {
-            c.Cities = [];
-        });
-
-        // Transform countries data to contain cities
-        for(let i = 0; i < data.length; i++) {
-            let thisCity = data[i];
-            // Find the country that matches thisCity.CountryId
-            let matchingCountry = tempCountries.find(country => {
-                if (country.CountryId === thisCity.CountryId) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-
-            if (matchingCountry.hasOwnProperty('Cities')) {
-                matchingCountry.Cities.push(thisCity);
-            } else {
-                let newCitiesArray = [];
-                newCitiesArray.push(thisCity);
-                matchingCountry.Cities = newCitiesArray;
-            }
-        }
-
-        // Save cities to state
-        this.setState({ allCities: data, allCountries: tempCountries });
     }
 
     onFetchFail(reason) {
@@ -163,7 +124,6 @@ class Home extends React.Component {
 
     fetchCountries() {
         // Query API for country data
-        //fetch("http://localhost:3000/api/globehopper/marketing/countries")
         fetch("/v1/countries")
             .then(res => res.json())    // returns a promise (Response promise)
             .then(this.onCountryFetchSuccess, this.onFetchFail)    // uses the response promise

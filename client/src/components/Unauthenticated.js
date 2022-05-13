@@ -4,14 +4,20 @@ import {
     Routes,
     Route,
     Outlet
-  } from "react-router-dom";
+} from "react-router-dom";
+import {
+    Box,
+    Paper,
+    Typography
+} from '@mui/material';
 
 function Unauthenticated() {
     return (
-        <>
-            <h2>You are not signed in to use Globehopper</h2>
-            <Outlet />
-        </>
+        <Paper sx={{ padding: 4 }}>
+            <Box>
+                <Outlet />
+            </Box>
+        </Paper>
     );
 }
 

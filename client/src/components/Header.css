@@ -1,0 +1,18 @@
+.site-header {
+    /* height: 20vh; */
+    /* background-color: #5ffa71; */
+    /* padding: 1em; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-header h1 {
+    /* color: white; */
+    color: darkslategray;
+}
+
+.header-bar {
+    background-color: #5ffa71 !important;
+}

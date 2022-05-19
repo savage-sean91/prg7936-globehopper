@@ -44,11 +44,6 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    preferences: {
-      type: String, 
-      enum: preferences, 
-      default: 'none',
-    }
   },
   {
     timestamps: true,

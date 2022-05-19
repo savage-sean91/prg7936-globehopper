@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Alert,
   Box,
@@ -17,9 +18,43 @@ import {
 } from "@mui/material";
 
 function CreateCountryForm(props) {
-  const onAddCountryClick = () => {
-    props.createCountry();
+  const [country, setCountry] = useState("");
+  const [population, setPopulation] = useState();
+  const [continent, setContinent] = useState();
+  const [imageUrl, setImageUrl] = useState();
+
+  const testData = {
+    name: "test",
+    population: 1234,
+    continent: "some continent",
+    imageUrl: "",
   };
+
+  function addCountry(e) {
+    e.preventDefault();
+    /*  console.log(country);
+    console.log(population);
+    console.log(continent);
+
+    const postData = {
+      country,
+      population,
+      continent,
+      imageUrl,
+    };
+
+    axios
+      .post("http://localhost:3001/v1/countries/", postData)
+      .then((response) => {
+        console.log(response);
+      });
+      */
+    fetch("http://localhost:3001/v1/countries/", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(testData),
+    });
+  }
 
   return (
     <div className="country-card">
@@ -46,6 +81,7 @@ function CreateCountryForm(props) {
                   fullWidth
                   required
                   type="text"
+                  value={country}
                 />
               </Grid>
             </Grid>
@@ -57,6 +93,7 @@ function CreateCountryForm(props) {
                   variant="outlined"
                   type="number"
                   fullWidth
+                  value={population}
                 />
               </Grid>
             </Grid>
@@ -96,6 +133,7 @@ function CreateCountryForm(props) {
                   placeholder="Include Image URL"
                   variant="outlined"
                   fullWidth
+                  value={imageUrl}
                 />
               </Grid>
             </Grid>
@@ -106,7 +144,7 @@ function CreateCountryForm(props) {
           color="warning"
           fullWidth
           type="submit"
-          onClick={onAddCountryClick}
+          onClick={addCountry}
         >
           Add Country
         </Button>

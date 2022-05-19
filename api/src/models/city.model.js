@@ -5,23 +5,23 @@ const citySchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     firstLandmark: {
       type: String,
-      required: false
+      required: false,
     },
     secondLandmark: {
       type: String,
-      required: false
+      required: false,
     },
     thirdLandmark: {
       type: String,
-      required: false
+      required: false,
     },
     capital: {
       type: Boolean,
-      required: false
+      required: false,
     },
     country: {
       type: mongoose.SchemaTypes.ObjectId,

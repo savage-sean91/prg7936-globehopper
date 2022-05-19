@@ -1,5 +1,12 @@
 .country-card {
-    /* border: 1px solid #5ffa71; */
-    border: 1px solid #999;
-    margin: 1em;
+  /* border: 1px solid #5ffa71; */
+  border: 1px solid #999;
+  margin: 1em;
+  border-radius: 5px;
+}
+.country-form {
+  border: 3px solid #898;
+  margin: 2em;
+  border-radius: 8px;
+  border-color: coral;
 }

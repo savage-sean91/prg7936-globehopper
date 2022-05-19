@@ -5,19 +5,19 @@ const countrySchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     population: {
       type: Number,
-      required: false
+      required: false,
     },
     continent: {
       type: String,
-      required: false
+      required: false,
     },
     imageUrl: {
       type: String,
-      required: false
+      required: false,
     },
   },
   {
